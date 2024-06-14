@@ -59,3 +59,6 @@ img {
 .images-change {
   margin-right: 1em;
 }
+.row {
+  display: flex;
+}
