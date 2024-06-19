@@ -129,7 +129,7 @@ input {
   font-weight: 700;
 }
 .payment-modal {
-  display: block; /*flex when displayed*/
+  display: none; /*flex when displayed*/
   position: fixed;
   margin: auto;
   top: 80px;

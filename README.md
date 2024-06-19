@@ -1,3 +1,2 @@
 # Restaurant Ordering App
-
-more info soon....
+- A simple ordering app where you can add items from the app to your cart , increase or decrease the quantity of items in cart , and also can remove it, once you are satisfied with your order, simply add the details for the payment.

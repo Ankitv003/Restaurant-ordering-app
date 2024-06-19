@@ -3,7 +3,7 @@
 // const mainSection = document.querySelector(".main-section");
 // let newItem = menuArray
 //   .map(
-//     (item) => `
+//     (item) => `;
 //   <div class="row">
 //     <div class="images-change">
 //       <img class="items-img" src="${item.image}" alt="${item.name}">
@@ -265,4 +265,3 @@ payButton.addEventListener("click", function () {
   paymentModal.remove();
   orderSection.textContent = `Thanks,{}`;
 });
-`
