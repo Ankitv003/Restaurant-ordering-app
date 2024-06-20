@@ -145,3 +145,9 @@ input {
   height: 300px;
   background-color: white;
 }
+.order-complete-message {
+  font-size: 1.5em;
+  color: #4caf50;
+  text-align: center;
+  margin-top: 20px;
+}

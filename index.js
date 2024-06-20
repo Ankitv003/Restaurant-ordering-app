@@ -154,6 +154,7 @@ addButtons.forEach((button) => {
           <h2 class="total-price-heading">Total Price: <span class="total-price">$0</span></h2>
           <button class="complete-order-btn">Complete order</button>`;
         mainSection.appendChild(orderSection);
+
         const completeOrderButton = orderSection.querySelector(
           ".complete-order-btn"
         );
@@ -249,19 +250,23 @@ const paymentModal = document.createElement("div");
 paymentModal.classList.add("payment-modal");
 
 paymentModal.innerHTML = `
-<div class="payment-details">
-<h1 class="payment-header">Enter Card Details</h1>
-<input type="text" placeholder="Enter your Name" required>
-<input type="number" placeholder="Enter Card Number" required>
-<input type="number" placeholder="Enter CVV" required>
-<button class="pay-btn">Pay</button>
-</div>
+<form class="payment-details">
+  <h1 class="payment-header">Enter Card Details</h1>
+  <input type="text" name="name" placeholder="Enter your Name" required pattern="[A-Za-z ]+">
+  <input type="number" name="card" placeholder="Enter Card Number (16 digits)" required pattern="[0-9]{16}" minlength="16" maxlength="16">
+  <input type="number" name="cvv" placeholder="Enter CVV (3 digits)" required pattern="\\d{3}" minlength="3" maxlength="3">
+  <button type="submit" class="pay-btn">Pay</button>
+</form>
 `;
 
 mainSection.append(paymentModal);
 
-const payButton = document.querySelector(".pay-btn");
-payButton.addEventListener("click", function () {
-  paymentModal.remove();
-  orderSection.textContent = `Thanks,{}`;
+// Add the event listener to the form submit
+const paymentForm = paymentModal.querySelector(".payment-details");
+paymentForm.addEventListener("submit", function (e) {
+  e.preventDefault(); // Prevent the form from submitting normally
+  paymentModal.style.display = "none";
+  const name = paymentForm.querySelector('input[name="name"]').value;
+  const orderSection = document.querySelector(".order-section");
+  orderSection.innerHTML = `<p class="order-complete-message">Thanks, ${name}. Your order is complete.</p>`;
 });
