@@ -20,13 +20,16 @@ p {
 hr {
   width: 95%;
 }
+
 .container {
-  max-width: 640px;
+  max-width: 602px;
   width: 95%;
   margin: 0 auto;
+  /* border: 1px solid red; */
 }
 .full-width-container {
   width: 100%;
+  /* border: 1px solid red; */
 }
 img {
   max-width: 100%;
@@ -52,6 +55,7 @@ img {
 .add-btn {
   border: none;
   background-color: white;
+  cursor: pointer;
 }
 .add-btn:hover {
   opacity: 0.6;
@@ -87,6 +91,7 @@ img {
   color: #8b8b8b;
   border-radius: 10px;
   padding: 0.3em 0.6em;
+  cursor: pointer;
 }
 .remove-btn:hover,
 .remove-btn:focus {
@@ -100,12 +105,13 @@ img {
   color: white;
   background-color: #16db99;
   margin-bottom: 1em;
+  cursor: pointer;
 }
+
 .quantity-controls {
   display: flex;
   gap: 10px;
   align-items: center;
-  /* margin: 0 auto; */
   margin-left: 1em;
 }
 .payment-details {
@@ -127,6 +133,7 @@ input {
   background-color: #16db99;
   border: none;
   font-weight: 700;
+  cursor: pointer;
 }
 .payment-modal {
   display: none; /*flex when displayed*/
@@ -138,16 +145,31 @@ input {
   align-items: center;
   justify-content: center;
   border: 1px solid #67595e;
-  border-radius: 5px;
-  /* width: 420px; */
+
   width: 85%;
-  /* height: 490px; */
+
   height: 300px;
   background-color: white;
+  box-shadow: 5.19px 5.19px 255.44px 0px #00000080;
 }
 .order-complete-message {
-  font-size: 1.5em;
-  color: #4caf50;
+  font-size: 1.5rem;
+  color: #065f46;
   text-align: center;
   margin-top: 20px;
+  background-color: #ecfdf5;
+}
+
+@media (min-width: 640px) {
+  .payment-modal {
+    border-radius: 5px;
+    width: 400px;
+    height: 320px;
+  }
+  .main-container {
+    width: 604px;
+    margin: 1em auto;
+    border: 2px solid black;
+    border-radius: 10px;
+  }
 }

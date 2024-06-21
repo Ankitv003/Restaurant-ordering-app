@@ -1,107 +1,3 @@
-`// import { menuArray } from "./data.js";
-
-// const mainSection = document.querySelector(".main-section");
-// let newItem = menuArray
-//   .map(
-//     (item) => `;
-//   <div class="row">
-//     <div class="images-change">
-//       <img class="items-img" src="${item.image}" alt="${item.name}">
-//     </div>
-//     <div class="row row-item">
-//       <div>
-//         <h1>${item.name}</h1>
-//         <p class="item-ingredients">${item.ingredients}</p>
-//         <p class="item-price">$${item.price}</p>
-//       </div>
-//       <div>
-//         <button data-id="${item.id}" class="add-btn"><img src="images/add-btn.png" alt="add-button"></button>
-//       </div>
-//     </div>
-//   </div>
-//   <hr>`
-//   )
-//   .join("");
-
-// mainSection.innerHTML = newItem;
-
-// const addButtons = document.querySelectorAll(".add-btn");
-// addButtons.forEach((button) => {
-//   button.addEventListener("click", function (e) {
-//     const buttonId = Number(e.currentTarget.dataset.id);
-//     let item = menuArray.find((item) => item.id === buttonId);
-
-//     if (item) {
-//       // Check if the order section already exists
-//       let orderSection = document.querySelector(".order-section");
-
-//       if (!orderSection) {
-//         // Create the order section if it doesn't exist
-//         orderSection = document.createElement("div");
-//         orderSection.classList.add("order-section");
-//         orderSection.classList.add("container");
-
-//         orderSection.innerHTML = `
-//           <h1 class="order-title">Your Order</h1>
-//           <div class="order-items"></div>
-//           <hr>
-//           <h2 class="total-price-heading">Total Price: <span class="total-price">$0</span></h2>
-//           <button class="complete-order-btn">Complete order</button>`;
-//         mainSection.appendChild(orderSection);
-//       }
-
-//       const orderItems = orderSection.querySelector(".order-items");
-//       const orderItem = document.createElement("div");
-//       orderItem.classList.add("order-item");
-//       orderItem.classList.add("row");
-
-//       orderItem.innerHTML = `
-//         <h2 class="item-name">${item.name}</h2>
-//         <button class="remove-btn">Remove</button>
-//         <p class="item-price">$${item.price}</p>
-
-//         `;
-
-//       const removeButton = orderItem.querySelector(".remove-btn");
-//       removeButton.addEventListener("click", function () {
-//         orderItem.remove();
-//         updateTotalPrice();
-//         if (orderItems.children.length === 0) {
-//           orderSection.remove();
-//         }
-//       });
-
-//       orderItems.appendChild(orderItem);
-//       updateTotalPrice();
-//     }
-//   });
-// });
-// function updateTotalPrice() {
-//   const orderItems = document.querySelectorAll(".order-item");
-//   let totalPrice = 0;
-//   orderItems.forEach((item) => {
-//     const price = parseFloat(
-//       item.querySelector("p").textContent.replace("$", "")
-//     );
-//     totalPrice += price;
-//   });
-//   document.querySelector(".total-price").textContent = `$${totalPrice}`;
-// }
-
-// const paymentModal = document.createElement("div");
-
-// paymentModal.classList.add("payment-modal");
-
-// paymentModal.innerHTML = `
-// <h1>Enter Card Details</h1>
-
-// <input type="text" placeholder="Enter your Name" required>
-// <input type="number" placeholder="Enter Card Number" required>
-// <input type="number" placeholder="Enter CVV" required>
-
-// `;
-
-// mainSection.append(paymentModal);
 import { menuArray } from "./data.js";
 
 const mainSection = document.querySelector(".main-section");
@@ -250,23 +146,22 @@ const paymentModal = document.createElement("div");
 paymentModal.classList.add("payment-modal");
 
 paymentModal.innerHTML = `
-<form class="payment-details">
-  <h1 class="payment-header">Enter Card Details</h1>
-  <input type="text" name="name" placeholder="Enter your Name" required pattern="[A-Za-z ]+">
-  <input type="number" name="card" placeholder="Enter Card Number (16 digits)" required pattern="[0-9]{16}" minlength="16" maxlength="16">
-  <input type="number" name="cvv" placeholder="Enter CVV (3 digits)" required pattern="\\d{3}" minlength="3" maxlength="3">
-  <button type="submit" class="pay-btn">Pay</button>
-</form>
+  <form class="payment-details">
+    <h1 class="payment-header">Enter Card Details</h1>
+    <input type="text" name="name" placeholder="Enter your Name" pattern="[A-Za-z\\s]+" title="Only alphabetic characters and spaces are allowed" required>
+    <input type="text" name="card" placeholder="Enter Card Number (16 digits)" pattern="\\d{16}" title="Card number must be exactly 16 digits" required>
+    <input type="text" name="cvv" placeholder="Enter CVV (3 digits)" pattern="\\d{3}" title="CVV must be exactly 3 digits" required>
+    <button type="submit" class="pay-btn">Pay</button>
+  </form>
 `;
 
 mainSection.append(paymentModal);
 
-// Add the event listener to the form submit
 const paymentForm = paymentModal.querySelector(".payment-details");
 paymentForm.addEventListener("submit", function (e) {
-  e.preventDefault(); // Prevent the form from submitting normally
+  e.preventDefault();
   paymentModal.style.display = "none";
   const name = paymentForm.querySelector('input[name="name"]').value;
   const orderSection = document.querySelector(".order-section");
-  orderSection.innerHTML = `<p class="order-complete-message">Thanks, ${name}. Your order is complete.</p>`;
+  orderSection.innerHTML = `<p class="order-complete-message">Thanks, ${name}. Your order is on it's way!</p>`;
 });
